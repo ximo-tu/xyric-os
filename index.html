@@ -1,41 +1,86 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      /* Clean resetting and global font consistency */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: monospace;
+      }
 
-  <body style="background-image: url(./Clouds.jpeg);background-size: cover;height:100vh">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 16px; height: 32px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 255, 255, 0.15); color: #000; font-family: monospace; font-size: 13px;">
-      <p margin-left: 16px>
-        xyricOS
-      </p>
+      /* Dynamic, crisp triangle buttons using clip-path */
+      .window-btn {
+        width: 14px;
+        height: 12px;
+        display: inline-block;
+        cursor: pointer;
+        transition: transform 0.1s ease, filter 0.2s ease;
+      }
+      .window-btn:hover {
+        transform: scale(1.15);
+        filter: brightness(1.2);
+      }
 
-      <p margin-right: 16px id="timeElement">
-        Time
-      </p>
+      /* Left-leaning triangle for Close */
+      .btn-close {
+        background-color: #ff5f56;
+        clip-path: polygon(0 100%, 50% 0, 100% 100%);
+      }
+
+      /* Flat inverted triangle for Minimize */
+      .btn-min {
+        background-color: #ffbd2e;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
+
+      /* Right-leaning triangle for Maximize */
+      .btn-max {
+        background-color: #27c93f;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+      }
+    </style>
+  </head>
+
+  <body style="background-image: url(./Clouds.jpeg); background-size: cover; height: 100vh;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 16px; height: 32px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 255, 255, 0.15); color: #000; font-size: 13px;">
+      <p style="margin-left: 4px;">xyricOS</p>
+      <p style="margin-right: 4px;" id="timeElement">Time</p>
     </div>
 
-    <div id="welcome" style="width:400px;border-radius: 16px; padding:20px;position: absolute; top: 50%; left: 50%; 
-transform: translate(-50%, -50%);background-color: rgba(0, 100, 80, 50%);border: 1px solid rgba(255, 255, 255, 0.15);box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);">
-      <p id="welcomeheader">
-        Handle
-      </p>
-      <h1>Hello!</h1>
-      <h3>Welcome to xyricOS</h3>
-      <p>This is my web OS project!</p>
-      <img src="Lines.jpeg" style="max-width: 200px; width: 100%; height: auto;">
-      <p>This is a real image I took! See if you can figure out how</p>
-      <p>Welcome to an OS that expresses me! </p>
+    <div id="welcome" style="width: 400px; border-radius: 16px; padding: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 100, 80, 50%); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); color: #000;">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <p id="welcomeheader" style="font-size: 12px; opacity: 0.7;">Welcome</p>
+        <div style="display: flex; gap: 8px;">
+          <div class="window-btn btn-close" title="Close"></div>
+          <div class="window-btn btn-min" title="Minimize"></div>
+          <div class="window-btn btn-max" title="Maximize"></div>
+        </div>
+      </div>
+
+      <h1 style="margin-bottom: 8px;">Hello!</h1>
+      <h3 style="margin-bottom: 12px;">Welcome to xyricOS</h3>
+      <p style="margin-bottom: 16px;">This is my web OS project!</p>
+      
+      <img src="Lines.jpeg" style="max-width: 200px; width: 100%; height: auto; border-radius: 8px; margin-bottom: 16px; display: block;">
+      
+      <p style="margin-bottom: 8px; font-size: 12px;">This is a real image I took! See if you can figure out how</p>
+      <p style="font-size: 12px; font-weight: bold;">Welcome to an OS that expresses me!</p>
     </div>
+
+    <script>
+      // Live clock function
+      function updateClock() {
+        document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+    <script src="app.js"></script>
   </body>
-
-  <script>
-    // Live clock
-    var currentTime = new Date().toLocaleString();
-    var timeText = document.querySelector("#timeElement");
-    timeText.innerHTML = currentTime;
-
-    setInterval(function () {
-    document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
-    }, 1000);
-  </script>
-  <script src="app.js"></script>
-
 </html>
