@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html>
 
-  <body>
-    <div style="max-width:400px;border:solid green;border-radius: 16px; padding:16px;position: absolute; top: 50%; left: 50%; 
-transform: translate(-50%, -50%);">
+  <body style="background-image: url(./Clouds.jpeg);background-size: cover;height:100vh">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 16px; height: 32px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 255, 255, 0.15); color: #000; font-family: monospace; font-size: 13px;">
+      <p margin-left: 16px>
+        xyricOS
+      </p>
+
+      <p margin-right: 16px id="timeElement">
+        Time
+      </p>
+    </div>
+
+    <div style="max-width:400px;border-radius: 16px; padding:20px;position: absolute; top: 50%; left: 50%; 
+transform: translate(-50%, -50%);background-color: rgba(0, 100, 80, 50%);">
       <h1>Hello!</h1>
       <h3>Welcome to xyricOS</h3>
       <p>This is my web OS project!</p>
-      <img src="IMG_4940.jpeg" style="max-width: 200px; width: 100%; height: auto;">
+      <img src="Lines.jpeg" style="max-width: 200px; width: 100%; height: auto;">
       <p>This is a real image I took! See if you can figure out how</p>
       <p>Welcome to an OS that expresses me! </p>
     </div>
   </body>
+
+  <script>
+    var currentTime = new Date().toLocaleString();
+    var timeText = document.querySelector("#timeElement");
+    timeText.innerHTML = currentTime;
+
+    setInterval(function () {
+    document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
+    }, 1000);
+  </script>
 
 </html>
